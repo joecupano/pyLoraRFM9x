@@ -104,7 +104,8 @@ class LoRa(object):
         self._spi_write(REG_21_PREAMBLE_LSB, 8)
 
         # set frequency
-        frf = int((self._freq * 1000000.0) / FSTEP)
+        #frf = int((self._freq * 1000000.0) / FSTEP)  // Make into Hz below instead
+        frf = int(self._freq / FSTEP)
         self._spi_write(REG_06_FRF_MSB, (frf >> 16) & 0xff)
         self._spi_write(REG_07_FRF_MID, (frf >> 8) & 0xff)
         self._spi_write(REG_08_FRF_LSB, frf & 0xff)
